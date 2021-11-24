@@ -1,0 +1,167 @@
+@font-face {
+  font-family: 'Butler-Black';
+  src: url(/src/pages/Starship/fonts/Butler/Butler-Black-8.otf);
+}
+
+@font-face {
+  font-family: 'Butler-Black-Stencil';
+  src: url(/src/pages/Starship/fonts/Butler/Butler-Black-Stencil-5.otf);
+}
+
+@font-face {
+  font-family: 'Butler-Bold';
+  src: url(/src/pages/Starship/fonts/Butler/Butler-Bold-9.otf);
+}
+
+@font-face {
+  font-family: 'Butler-Bold-Stencil';
+  src: url(/src/pages/Starship/fonts/Butler/Butler-Bold-Stencil-6.otf);
+}
+
+@font-face {
+  font-family: 'Butler-ExtraBold';
+  src: url(/src/pages/Starship/fonts/Butler/Butler-ExtraBold-10.otf);
+}
+
+@font-face {
+  font-family: 'Butler-ExtraBold-Stencil';
+  src: url(/src/pages/Starship/fonts/Butler/Butler-ExtraBold-Stencil-7.otf);
+}
+
+@font-face {
+  font-family: 'Butler-Light';
+  src: url(/src/pages/Starship/fonts/Butler/Butler-Light-11.otf);
+}
+
+@font-face {
+  font-family: 'Butler-Light-Stencil';
+  src: url(/src/pages/Starship/fonts/Butler/Butler-Light-Stencil-1.otf);
+}
+
+@font-face {
+  font-family: 'Butler-Medium';
+  src: url(/src/pages/Starship/fonts/Butler/Butler-Medium-12.otf);
+}
+
+@font-face {
+  font-family: 'Butler-Medium-Stencil';
+  src: url(/src/pages/Starship/fonts/Butler/Butler-Medium-Stencil-2.otf);
+}
+
+@font-face {
+  font-family: 'Butler-Regular';
+  src: url(/src/pages/Starship/fonts/Butler/Butler-Regular-13.otf);
+}
+
+@font-face {
+  font-family: 'Butler-Regular-Stencil';
+  src: url(/src/pages/Starship/fonts/Butler/Butler-Regular-Stencil-3.otf);
+}
+
+@font-face {
+  font-family: 'Butler-Ultra-Light';
+  src: url(/src/pages/Starship/fonts/Butler/Butler-Ultra-Light-14.otf);
+}
+
+@font-face {
+  font-family: 'Butler-Ultra-Light-Stencil';
+  src: url(/src/pages/Starship/fonts/Butler/Butler-Ultra-Light-Stencil-4.otf);
+}
+
+@font-face {
+  font-family: 'Montserrat-Black';
+  src: url(/src/pages/Starship/fonts/Montserrat/Montserrat-Black.otf);
+}
+
+@font-face {
+  font-family: 'Montserrat-BlackItalic';
+  src: url(/src/pages/Starship/fonts/Montserrat/Montserrat-BlackItalic.otf);
+}
+
+@font-face {
+  font-family: 'Montserrat-Bold';
+  src: url(/src/pages/Starship/fonts/Montserrat/Montserrat-Bold.otf);
+}
+
+@font-face {
+  font-family: 'Montserrat-BoldItalic';
+  src: url(/src/pages/Starship/fonts/Montserrat/Montserrat-BoldItalic.otf);
+}
+
+@font-face {
+  font-family: 'Montserrat-ExtraBold';
+  src: url(/src/pages/Starship/fonts/Montserrat/Montserrat-ExtraBold.otf);
+}
+
+@font-face {
+  font-family: 'Montserrat-ExtraBoldItalic';
+  src: url(/src/pages/Starship/fonts/Montserrat/Montserrat-ExtraBoldItalic.otf);
+}
+
+@font-face {
+  font-family: 'Montserrat-ExtraLight';
+  src: url(/src/pages/Starship/fonts/Montserrat/Montserrat-ExtraLight.otf);
+}
+
+@font-face {
+  font-family: 'Montserrat-ExtraLightItalic';
+  src: url(/src/pages/Starship/fonts/Montserrat/Montserrat-ExtraLightItalic.otf);
+}
+
+@font-face {
+  font-family: 'Montserrat-Italic';
+  src: url(/src/pages/Starship/fonts/Montserrat/Montserrat-Italic.otf);
+}
+
+@font-face {
+  font-family: 'Montserrat-Light';
+  src: url(/src/pages/Starship/fonts/Montserrat/Montserrat-Light.otf);
+}
+
+@font-face {
+  font-family: 'Montserrat-LightItalic';
+  src: url(/src/pages/Starship/fonts/Montserrat/Montserrat-LightItalic.otf);
+}
+
+@font-face {
+  font-family: 'Montserrat-Medium';
+  src: url(/src/pages/Starship/fonts/Montserrat/Montserrat-Medium.otf);
+}
+
+@font-face {
+  font-family: 'Montserrat-MediumItalic';
+  src: url(/src/pages/Starship/fonts/Montserrat/Montserrat-MediumItalic.otf);
+}
+
+@font-face {
+  font-family: 'Montserrat-Regular';
+  src: url(/src/pages/Starship/fonts/Montserrat/Montserrat-Regular.otf);
+}
+
+#view {
+  width: 100%;
+  height: 100%;
+}
+#view {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+#view::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(transparent 10%, rgba(0, 0, 0, 0.4) 50%);
+}
+#root {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+}

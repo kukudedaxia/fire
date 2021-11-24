@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #edeef2;
+  padding: 1em;
+  outline: none;
+  border: 1px solid;
+  border-radius: 12px;
+  width: 100%;
+  border-color: #ced0d9;
+  height: 50px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.wrapper:last-child {
+  margin-bottom: 0;
+}
+
+.icon {
+  width: 30px;
+}
