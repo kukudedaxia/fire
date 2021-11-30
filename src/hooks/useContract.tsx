@@ -2,8 +2,8 @@ import { Contract } from '@ethersproject/contracts'
 import ENS_PUBLIC_RESOLVER_ABI from '../abis/ens-public-resolver.json'
 import { abi as MERKLE_DISTRIBUTOR_ABI } from '../abis/MerkleDistributor.json'
 import ENS_ABI from '../abis/ens-register.json'
-import { ENS_REGISTRAR_ADDRESSES, MERKLE_DISTRIBUTOR_ADDRESS, MULTICALL_ADDRESS } from '../constants/address'
-import { abi as MulticallABI } from '../abis/UniswapInterfaceMulticall.json'
+import { ENS_REGISTRAR_ADDRESSES, MERKLE_DISTRIBUTOR_ADDRESS } from '../constants/address'
+// import { abi as MulticallABI } from '../abis/UniswapInterfaceMulticall.json'
 import { useMemo } from 'react'
 import { getContract } from '../utils/util'
 
@@ -42,10 +42,15 @@ export function useENSResolverContract(address: string | undefined, withSignerIf
   return useContract<EnsPublicResolver>(address, ENS_PUBLIC_RESOLVER_ABI, withSignerIfPossible)
 }
 
-export function useMulticall2Contract() {
-  return useContract<UniswapInterfaceMulticall>(MULTICALL_ADDRESS, MulticallABI, false) as UniswapInterfaceMulticall
-}
+// export function useMulticall2Contract() {
+//   return useContract<UniswapInterfaceMulticall>(MULTICALL_ADDRESS, MulticallABI, false) as UniswapInterfaceMulticall
+// }
 
 export function useMerkleDistributorContract() {
+  return useContract(MERKLE_DISTRIBUTOR_ADDRESS, MERKLE_DISTRIBUTOR_ABI, true)
+}
+
+// 测试demo 这里类似于用通用合约方法 生成的不同合约对象
+export function useErc20Contract() {
   return useContract(MERKLE_DISTRIBUTOR_ADDRESS, MERKLE_DISTRIBUTOR_ABI, true)
 }

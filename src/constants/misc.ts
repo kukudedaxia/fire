@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Percent } from '@uniswap/sdk-core'
 import JSBI from 'jsbi'
 

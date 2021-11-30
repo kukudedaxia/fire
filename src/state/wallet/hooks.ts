@@ -3,7 +3,7 @@ import JSBI from 'jsbi'
 import { useMemo } from 'react'
 import { Interface } from '@ethersproject/abi'
 
-import { useMulticall2Contract } from '../../hooks/useContract'
+import { useErc20Contract } from '../../hooks/useContract'
 import { useActiveWeb3React } from '../../hooks/web3'
 import { isAddress } from '../../utils/util'
 import { useMultipleContractSingleData, useSingleContractMultipleData } from '../multicall/hooks'
@@ -19,7 +19,7 @@ export function useETHBalances(
   [address: string]: CurrencyAmount<Currency> | undefined
 } {
   const { chainId } = useActiveWeb3React()
-  const multicallContract = useMulticall2Contract()
+  const erc20Contract = useErc20Contract()
 
   const addresses: string[] = useMemo(
     () =>
@@ -31,9 +31,10 @@ export function useETHBalances(
         : [],
     [uncheckedAddresses]
   )
-
+  
+  // 获取账户的
   const results = useSingleContractMultipleData(
-    multicallContract,
+    erc20Contract,
     'getEthBalance',
     addresses.map(address => [address])
   )
@@ -43,17 +44,19 @@ export function useETHBalances(
       addresses.reduce<{ [address: string]: CurrencyAmount<Currency> }>((memo, address, i) => {
         const value = results?.[i]?.result?.[0]
         if (value && chainId)
-          memo[address] = CurrencyAmount.fromRawAmount(Ether.onChain(chainId), JSBI.BigInt(value.toString()))
+          //@ts-ignore
+          memo[address] = CurrencyAmount.fromRawAmount(Ether.onChain(chainId), JSBI.BigInt(value.toString() as string))
         return memo
       }, {}),
     [addresses, chainId, results]
   )
 }
 
-const TOKEN_BALANCE_GAS_OVERRIDE: { [chainId: number]: number } = {
-  [SupportedChainId.OPTIMISM]: 250_000,
-  [SupportedChainId.OPTIMISTIC_KOVAN]: 250_000
-}
+// 不同链路的gas不一样
+// const TOKEN_BALANCE_GAS_OVERRIDE: { [chainId: number]: number } = {
+//   [SupportedChainId.OPTIMISM]: 250_000,
+//   [SupportedChainId.OPTIMISTIC_KOVAN]: 250_000
+// }
 
 /**
  * Returns a map of token addresses to their eventually consistent token balances for a single account.
@@ -72,7 +75,8 @@ export function useTokenBalancesWithLoadingIndicator(
   const validatedTokenAddresses = useMemo(() => validatedTokens.map(vt => vt.address), [validatedTokens])
   const ERC20Interface = new Interface(ERC20ABI) as Erc20Interface
   const balances = useMultipleContractSingleData(validatedTokenAddresses, ERC20Interface, 'balanceOf', [address], {
-    gasRequired: (chainId && TOKEN_BALANCE_GAS_OVERRIDE[chainId]) ?? 100_000
+    // gasRequired: (chainId && TOKEN_BALANCE_GAS_OVERRIDE[chainId]) ?? 100_000
+     gasRequired:  chainId ?? 100_000
   })
 
   const anyLoading: boolean = useMemo(() => balances.some(callState => callState.loading), [balances])
@@ -85,6 +89,7 @@ export function useTokenBalancesWithLoadingIndicator(
               const value = balances?.[i]?.result?.[0]
               const amount = value ? JSBI.BigInt(value.toString()) : undefined
               if (amount) {
+                //@ts-ignore
                 memo[token.address] = CurrencyAmount.fromRawAmount(token, amount)
               }
               return memo

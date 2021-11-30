@@ -22,6 +22,7 @@ import WalletModal from '../Wallet'
 import { ButtonSecondary } from '../Button'
 import { useHasSocks } from '../../hooks/useSocksBalance'
 
+
 const IconWrapper = styled.div<{ size?: number }>`
   ${({ theme }) => theme.flexColumnNoWrap};
   align-items: center;

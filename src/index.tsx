@@ -13,10 +13,6 @@ import ApplicationUpdater from './state/application/updater'
 
 const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName)
 
-import { setupScene } from './plugin/particle/3dview/scene'
-
-setupScene()
-
 function Updaters() {
   return (
     <>

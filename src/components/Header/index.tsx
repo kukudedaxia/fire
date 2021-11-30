@@ -1,13 +1,12 @@
 // import { Trans } from '@lingui/macro'
 import styled from 'styled-components/macro'
 import starship from '../../assets/starship/starship.png'
-import { MEDIA_WIDTHS } from '../../pages/Starship/constant'
-
+import { useETHBalances } from '../../state/wallet/hooks'
 import { useActiveWeb3React } from '../../hooks/web3'
-import Web3Status from '../../components/Web3Status/Web3Status'
 
 import { useState } from 'react'
-import { Text } from 'rebass'
+import useTheme from '../../hooks/useTheme'
+import Web3Status from '../Web3Status'
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -16,10 +15,17 @@ const HeaderWrapper = styled.div`
   padding: 20px 0;
   width: 1200px;
   margin: 0 auto;
-  @media screen and (max-width: ${MEDIA_WIDTHS.upToSmall}px) {
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
     width: 100vw;
     padding:20px;
-  }
+ `};
+ 
+`
+const HeaderControls = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-self: flex-end;
 `
 
 const LogoWrapper = styled.img`
@@ -29,13 +35,6 @@ const LogoWrapper = styled.img`
   margin-left:-20px;
   
 `
-const HeaderControls = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-self: flex-end;
-`
-
 const HeaderElement = styled.div`
   display: flex;
   align-items: center;
@@ -68,23 +67,22 @@ const AccountElement = styled.div<{ active: boolean }>`
   }
 `
 
-const BalanceText = styled(Text)`
-  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
-    display: none;
-  `};
-`
-
 const Header = () => {
   const { account } = useActiveWeb3React()
 
+  const { white, black } = useTheme()
   return (
     <HeaderWrapper>
       <LogoWrapper src={starship} alt="starship" />
       <HeaderControls>
         <HeaderElement>
           <AccountElement active={!!account}>
-            {/* Web3Status 钱包调用能力 */}
-            <Web3Status />
+                {/* {account && userEthBalance ? (
+                  <BalanceText style={{ flexShrink: 0, userSelect: 'none' }} pl="0.75rem" pr="0.5rem" fontWeight={500}>
+                    <Trans>{userEthBalance?.toSignificant(3)} ETH</Trans>
+                  </BalanceText>
+                ) : null} */}
+                <Web3Status />
           </AccountElement>
         </HeaderElement>
       </HeaderControls>
@@ -92,4 +90,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Header;

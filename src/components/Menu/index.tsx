@@ -1,4 +1,4 @@
-import { CHAIN_INFO, L2_CHAIN_IDS, SupportedChainId } from '../../constants/chains'
+import { CHAIN_INFO, SupportedChainId } from '../../constants/chains'
 import React, { useEffect, useRef, useState } from 'react'
 import { BookOpen, Code, Globe, Info, MessageCircle, Moon, PieChart, Sun } from 'react-feather'
 import { Link } from 'react-router-dom'
@@ -170,7 +170,7 @@ export default function Menu() {
   const toggle = useToggleModal(ApplicationModal.MENU)
   useOnClickOutside(node, open ? toggle : undefined)
   const openClaimModal = useToggleModal(ApplicationModal.ADDRESS_CLAIM)
-  const showUNIClaimOption = Boolean(!!account && !!chainId && !L2_CHAIN_IDS.includes(chainId))
+  const showUNIClaimOption = Boolean(!!account && !!chainId)
   const { infoLink } = CHAIN_INFO[chainId ? chainId : SupportedChainId.MAINNET]
 
   const [menu, setMenu] = useState<'main' | 'lang'>('main')

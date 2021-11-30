@@ -21,23 +21,24 @@ export function useEagerConnect() {
   const [triedSafe, setTriedSafe] = useState(!IS_IN_IFRAME)
 
   // first, try connecting to a gnosis safe
-  useEffect(() => {
-    if (!triedSafe) {
-      gnosisSafe.isSafeApp().then(loadedInSafe => {
-        if (loadedInSafe) {
-          activate(gnosisSafe, undefined, true).catch(() => {
-            setTriedSafe(true)
-          })
-        } else {
-          setTriedSafe(true)
-        }
-      })
-    }
-  }, [activate, setTriedSafe, triedSafe])
+  // useEffect(() => {
+  //   if (!triedSafe) {
+  //     gnosisSafe.isSafeApp().then(loadedInSafe => {
+  //       if (loadedInSafe) {
+  //         activate(gnosisSafe, undefined, true).catch(() => {
+  //           setTriedSafe(true)
+  //         })
+  //       } else {
+  //         setTriedSafe(true)
+  //       }
+  //     })
+  //   }
+  // }, [activate, setTriedSafe, triedSafe])
 
   // then, if that fails, try connecting to an injected connector
   useEffect(() => {
     if (!active && triedSafe) {
+      console.log('222')
       injected.isAuthorized().then(isAuthorized => {
         if (isAuthorized) {
           activate(injected, undefined, true).catch(() => {
@@ -45,9 +46,9 @@ export function useEagerConnect() {
           })
         } else {
           if (isMobile && window.ethereum) {
-            activate(injected, undefined, true).catch(() => {
-              setTried(true)
-            })
+            // activate(injected, undefined, true).catch(() => {
+              // setTried(true)
+            // })
           } else {
             setTried(true)
           }

@@ -2,6 +2,7 @@ import { AbstractConnector } from '@web3-react/abstract-connector'
 import { ConnectorUpdate } from '@web3-react/types'
 import invariant from 'tiny-invariant'
 
+// 定义网络链接参数 
 interface NetworkConnectorArguments {
   urls: { [chainId: number]: string }
   defaultChainId?: number
@@ -28,6 +29,7 @@ interface BatchItem {
   reject: (error: Error) => void
 }
 
+// 定义最小
 class MiniRpcProvider implements AsyncSendable {
   public readonly isMetaMask: false = false
   public readonly chainId: number
@@ -143,6 +145,7 @@ class MiniRpcProvider implements AsyncSendable {
   }
 }
 
+// 定义网络链接类
 export class NetworkConnector extends AbstractConnector {
   private readonly providers: { [chainId: number]: MiniRpcProvider }
   private currentChainId: number

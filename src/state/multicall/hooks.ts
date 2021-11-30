@@ -155,6 +155,7 @@ function useCallsData(
 }
 
 // formats many calls to a single function on a single contract, with the function name and inputs specified
+//在单个合约上格式化对单个函数的多次调用，并指定函数名称和输入
 export function useSingleContractMultipleData(
   contract: Contract | null | undefined,
   methodName: string,
